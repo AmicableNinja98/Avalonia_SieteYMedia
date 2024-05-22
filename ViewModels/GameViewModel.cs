@@ -151,7 +151,7 @@ public class GameViewModel : ViewModelBase
         }
         else
         {
-            if (PuntosCrupier < PuntosJug && PuntosCrupier < 6)
+            if (PuntosCrupier < PuntosJug && PuntosCrupier < 7.5)
             {
                 var naipe = _baraja.ExtraerNaipe();
                 if (naipe != null)
@@ -160,38 +160,14 @@ public class GameViewModel : ViewModelBase
                     SumarPuntosCrupier(naipe);
                 }
             }
-            else if (PuntosCrupier > PuntosJug)
+            else if (PuntosCrupier >= PuntosJug)
             {
                 _movCrupier.Stop();
                 Ganador();
             }
-            else if (PuntosCrupier < 7.5 && PuntosCrupier <= PuntosJug)
-            {
-                var rnd = new Random();
-                int alea = rnd.Next(0, 6);
-                if (alea <= 2)
-                {
-                    var naipe = _baraja.ExtraerNaipe();
-                    if (naipe != null)
-                    {
-                        _crupier.PedirCarta(naipe);
-                        SumarPuntosCrupier(naipe);
-                    }
-                }
-                else
-                {
-                    _movCrupier.Stop();
-                    Ganador();
-                }
-            }
             else
             {
                 if (PuntosCrupier > 7.5)
-                {
-                    _movCrupier.Stop();
-                    Ganador();
-                }
-                else if (PuntosCrupier < 7.5 && PuntosCrupier > PuntosJug)
                 {
                     _movCrupier.Stop();
                     Ganador();
