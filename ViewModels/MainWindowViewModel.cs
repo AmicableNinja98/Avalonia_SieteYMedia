@@ -3,6 +3,7 @@ using ReactiveUI;
 using SieteYMedia.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 namespace SieteYMedia.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
@@ -56,6 +57,15 @@ public class MainWindowViewModel : ViewModelBase
         {
             LoadGameInstance.Jugador = LoadUserInstance.JugadorSeleccionado;
             ContenidoViewModel = LoadGameInstance;
+        }
+    }
+    public void EliminarJugador()
+    {
+        if(LoadUserInstance.JugadorSeleccionado != null)
+        {
+            var jug = LoadUserInstance.Lista.First((x) => x.ID == LoadUserInstance.JugadorSeleccionado.ID);
+            LoadUserInstance.Lista.Remove(jug);
+            LoadUserInstance.SerializarJSON();
         }
     }
     #endregion
