@@ -53,7 +53,7 @@ public class MainWindowViewModel : ViewModelBase
     }
     public void SeleccionarJugador()
     {
-        if(LoadUserInstance.JugadorSeleccionado != null)
+        if(LoadUserInstance.JugadorSeleccionado != null && !string.IsNullOrWhiteSpace(LoadUserInstance.JugadorSeleccionado.Nombre))
         {
             LoadGameInstance.Jugador = LoadUserInstance.JugadorSeleccionado;
             ContenidoViewModel = LoadGameInstance;
@@ -61,7 +61,7 @@ public class MainWindowViewModel : ViewModelBase
     }
     public void EliminarJugador()
     {
-        if(LoadUserInstance.JugadorSeleccionado != null)
+        if(LoadUserInstance.JugadorSeleccionado != null && !string.IsNullOrWhiteSpace(LoadUserInstance.JugadorSeleccionado.Nombre))
         {
             var jug = LoadUserInstance.Lista.First((x) => x.ID == LoadUserInstance.JugadorSeleccionado.ID);
             LoadUserInstance.Lista.Remove(jug);
