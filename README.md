@@ -1,1 +1,1 @@
-Juego de cartas español Siete y Media hecho con Avalonia.
+Juego de cartas Siete y Media hecho con Avalonia.
