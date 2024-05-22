@@ -52,7 +52,7 @@ public class GameViewModel : ViewModelBase
     public string MostrarGanador
     {
         get => _mostrarGanador;
-        set => this.RaiseAndSetIfChanged(ref _mostrarGanador,value);
+        set => this.RaiseAndSetIfChanged(ref _mostrarGanador, value);
     }
     public ObservableCollection<Naipe> MazoJugador => _jugador.Mazo;
     public ObservableCollection<Naipe> MazoCrupier => _crupier.Mazo;
@@ -79,8 +79,14 @@ public class GameViewModel : ViewModelBase
             var naipe = (Naipe)_baraja.ExtraerNaipe()!;
             if (naipe != null)
             {
-                PedirCartaJug(naipe);
-                ComprobarPuntos();
+                _jugador.PedirCarta(naipe);
+                SumarPuntos(naipe);
+                if (PuntosJug > 7.5)
+                {
+                    PedirHabilitado = false;
+                    PlantarseHabilitado = false;
+                    _movCrupier.Start();
+                }
             }
         });
         PlantarseCommand = ReactiveCommand.Create(() =>
@@ -92,15 +98,10 @@ public class GameViewModel : ViewModelBase
         GoMainMenuCommand = ReactiveCommand.Create(() =>
         {
             mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.MenuInstance;
+            _movCrupier.Stop();
             _listaJugadores.SerializarJSON();
             Reiniciar();
         });
-    }
-
-    private void PedirCartaJug(Naipe naipe)
-    {
-        _jugador.PedirCarta(naipe);
-        SumarPuntos(naipe);
     }
     #endregion
 
@@ -112,29 +113,27 @@ public class GameViewModel : ViewModelBase
         PuntosCrupier = 0;
         PedirHabilitado = true;
         PlantarseHabilitado = true;
+        MostrarGanador = string.Empty;
         _baraja.Reiniciar();
         _jugador.Mazo.Clear();
         _crupier.Mazo.Clear();
-        MostrarGanador = string.Empty;
         BarajarBaraja();
     }
     private void SumarPuntos(INaipe naipe) => PuntosJug += (naipe.Peso <= Figura.Siete) ? (float)naipe.Peso : 0.5f;
     private void SumarPuntosCrupier(INaipe naipe) => PuntosCrupier += (naipe.Peso <= Figura.Siete) ? (float)naipe.Peso : 0.5f;
-    private void ComprobarPuntos() => PedirHabilitado = (PuntosJug > 7.5) ? false : true;
     private void Ganador()
     {
         var jug = _listaJugadores.Lista.First((x) => x.ID == _jugador.ID);
-        if((PuntosJug > PuntosCrupier && PuntosJug <= 7.5) || PuntosCrupier > 7.5)
+        if ((PuntosJug > PuntosCrupier && PuntosJug <= 7.5) || PuntosCrupier > 7.5)
         {
-            MostrarGanador =  $"Gana el jugador {_jugador.Nombre}";
+            MostrarGanador = $"Gana el jugador {_jugador.Nombre}";
             jug.PartidasGanadas++;
         }
         else
         {
-            MostrarGanador =  $"Gana el crupier";
+            MostrarGanador = $"Gana el crupier";
             jug.PartidasPerdidas++;
         }
-
         jug.PartidasTotales++;
     }
     private void JugarCrupier(object? sender, EventArgs e)
@@ -161,7 +160,7 @@ public class GameViewModel : ViewModelBase
                     SumarPuntosCrupier(naipe);
                 }
             }
-            else if(PuntosCrupier > PuntosJug)
+            else if (PuntosCrupier > PuntosJug)
             {
                 _movCrupier.Stop();
                 Ganador();

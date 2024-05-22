@@ -10,5 +10,6 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="Siete y Media"
-        Content="{Binding ContenidoViewModel}">
+        Content="{Binding ContenidoViewModel}"
+        WindowState="Maximized">
 </Window>

@@ -5,26 +5,22 @@
              xmlns:vm="using:SieteYMedia.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SieteYMedia.Views.MenuView"
-             x:DataType="vm:MenuViewModel">
+             x:DataType="vm:MenuViewModel" Background="MediumSeaGreen">
 
       <UserControl.Styles>
             <Style Selector="Button.customBackground:pointerover /template/ ContentPresenter">
-  		      <Setter Property="Background" Value="Gold"/>
+  		      <Setter Property="Background" Value="Aquamarine"/>
   	      </Style>
       </UserControl.Styles>
-      <DockPanel Background="Green">
-                  <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding Titulo}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 80 0 20" FontSize="40" FontFamily="{StaticResource MedievalFont}" Foreground="White"/>
-                        <TextBlock Text="{Binding Subtitulo}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 70" FontSize="20" FontFamily="{StaticResource MedievalFont}" Foreground="White"/>
-                        <Border Background="Black" BorderBrush="Gold" BorderThickness="5" CornerRadius="3" Margin="10 5 10 5" Width="180" Height="180">
-                              <StackPanel VerticalAlignment="Center">
-                                    <Button Classes="customBackground" Content="{Binding Inicio}" CornerRadius="3" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" 
-                                    HorizontalContentAlignment="Center" Margin="0 0 0 20" Width="140" Height="40" Background="Gold" FontSize="20" FontFamily="{StaticResource MedievalFont}" 
-                                    Command="{Binding IrCargarUsuarios}"/>
-                                    <Button Classes="customBackground" Content="{Binding Opciones}" CornerRadius="3" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" 
-                                    HorizontalContentAlignment="Center" Margin="0 0 0 0" Width="140" Height="40" Background="Gold" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
-                              </StackPanel>
-                        </Border>
-                  </StackPanel>
-            </DockPanel>
+      <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0 60">
+            <TextBlock Text="{Binding Titulo}" HorizontalAlignment="Center" Margin="0 80 0 20" FontSize="40" FontFamily="{StaticResource MedievalFont}" Foreground="White"/>
+            <TextBlock Text="{Binding Subtitulo}" HorizontalAlignment="Center" Margin="0 0 0 70" FontSize="20" FontFamily="{StaticResource MedievalFont}" Foreground="White"/>
+            <StackPanel VerticalAlignment="Center" Margin="10" Width="250" Height="150">
+                  <Button Classes="customBackground" Content="{Binding Inicio}" CornerRadius="3" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+                  HorizontalContentAlignment="Center" Margin="0 0 0 20" Width="140" Height="40" Background="Aquamarine" FontSize="20" FontFamily="{StaticResource MedievalFont}" 
+                  Command="{Binding IrCargarUsuarios}"/>
+                  <Button Classes="customBackground" Content="{Binding Opciones}" CornerRadius="3" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+                  HorizontalContentAlignment="Center" Margin="0 0 0 0" Width="140" Height="40" Background="Aquamarine" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
+            </StackPanel>
+      </StackPanel>
 </UserControl>

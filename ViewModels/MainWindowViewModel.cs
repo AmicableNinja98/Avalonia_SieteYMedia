@@ -21,7 +21,6 @@ public class MainWindowViewModel : ViewModelBase
     public ListaJugadoresViewModel LoadUserInstance {get;}
     public CrearUsuarioViewModel LoadCreateUserInstance {get;}
     public GameViewModel LoadGameInstance {get;}
-    public ObservableCollection<Jugador> Jugadores => _jugadores.Lista;
     #endregion
     #region Constructores
     public MainWindowViewModel()

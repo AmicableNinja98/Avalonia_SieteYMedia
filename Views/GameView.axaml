@@ -22,23 +22,22 @@
     <vm:GameViewModel/>
   </Design.DataContext>
 
-  <DockPanel Background="MediumSeaGreen">
-    <DockPanel DockPanel.Dock="Top" Background="SeaGreen" Height="80">
+  <DockPanel Background="SeaGreen">
+    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="80" HorizontalAlignment="Center">
       <TextBlock Text="Puntos Crupier:" VerticalAlignment="Center" Margin="20 0 10 0" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
-      <TextBlock Text="{Binding PuntosCrupier}" VerticalAlignment="Center" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
-      <TextBlock Text="{Binding MostrarGanador}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
-    </DockPanel>
-    <DockPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Height="80" Background="SeaGreen">
-      <DockPanel HorizontalAlignment="Center">
-        <TextBlock Text="Jugador:" VerticalAlignment="Center" Margin="20 0 10 0" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
-        <TextBlock Text="{Binding Jugador.Nombre}" VerticalAlignment="Center" Margin="0 0 10 0" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
-        <TextBlock Text="Puntos:" VerticalAlignment="Center" Margin="20 0 10 0" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
-        <TextBlock Text="{Binding PuntosJug}" VerticalAlignment="Center" Margin="0 0 10 0" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
-        <Button Classes="customBackground" Content="Pedir" FontSize="20" Margin="20 0" Background="Aquamarine" FontFamily="{StaticResource MedievalFont}" IsEnabled="{Binding PedirHabilitado}" Command="{Binding PedirCartaCommand}"/>
-        <Button Classes="customBackground" Content="Plantarse" FontSize="20" Margin="20 0"  Background="Aquamarine" FontFamily="{StaticResource MedievalFont}" IsEnabled="{Binding PlantarseHabilitado}" Command="{Binding PlantarseCommand}"/>
-        <Button Classes="customBackground" Content="Salir" FontSize="20" Margin="20 0" Background="Aquamarine" FontFamily="{StaticResource MedievalFont}" Command="{Binding GoMainMenuCommand}"/>
-      </DockPanel>
-    </DockPanel>
+      <TextBlock Text="{Binding PuntosCrupier}" VerticalAlignment="Center" Margin="0 0 10 0" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
+      <TextBlock Text="{Binding MostrarGanador}" VerticalAlignment="Center" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
+    </StackPanel>
+
+    <StackPanel DockPanel.Dock="Bottom" Height="80" Orientation="Horizontal" HorizontalAlignment="Center">
+      <TextBlock Text="Jugador:" VerticalAlignment="Center" Margin="20 0 10 0" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
+      <TextBlock Text="{Binding Jugador.Nombre}" VerticalAlignment="Center" Margin="0 0 10 0" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
+      <TextBlock Text="Puntos:" VerticalAlignment="Center" Margin="20 0 10 0" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
+      <TextBlock Text="{Binding PuntosJug}" VerticalAlignment="Center" Margin="0 0 10 0" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
+      <Button Classes="customBackground" Content="Pedir" FontSize="20" Margin="20 0" Background="Aquamarine" FontFamily="{StaticResource MedievalFont}" IsEnabled="{Binding PedirHabilitado}" Command="{Binding PedirCartaCommand}"/>
+      <Button Classes="customBackground" Content="Plantarse" FontSize="20" Margin="20 0"  Background="Aquamarine" FontFamily="{StaticResource MedievalFont}" IsEnabled="{Binding PlantarseHabilitado}" Command="{Binding PlantarseCommand}"/>
+      <Button Classes="customBackground" Content="Salir" FontSize="20" Margin="20 0" Background="Aquamarine" FontFamily="{StaticResource MedievalFont}" Command="{Binding GoMainMenuCommand}"/>
+    </StackPanel>
 
     <StackPanel Background="LimeGreen">
       <ItemsControl HorizontalAlignment="Center" Margin="5" ItemsSource="{Binding MazoCrupier}">
@@ -57,7 +56,7 @@
       <ItemsControl Margin="5" ItemsSource="{Binding MazoJugador}">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
-            <WrapPanel HorizontalAlignment="Center" Margin="0 10"/>
+            <WrapPanel HorizontalAlignment="Center"/>
           </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
