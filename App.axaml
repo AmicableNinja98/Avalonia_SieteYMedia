@@ -1,0 +1,19 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             x:Class="SieteYMedia.App"
+             xmlns:local="using:SieteYMedia"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme/>
+    </Application.Styles>
+    <Application.Resources>
+        <FontFamily x:Key="MedievalFont">/Assets/Magicmedieval-pRV1.ttf#MagicMedieval</FontFamily>
+    </Application.Resources>
+</Application>

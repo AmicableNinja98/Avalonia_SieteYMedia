@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:SieteYMedia.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SieteYMedia.Views.CrearUsuarioView"
+             x:DataType="vm:CrearUsuarioViewModel">
+
+  <UserControl.Styles>
+      <Style Selector="Button.customBackground:pointerover /template/ ContentPresenter">
+  		  <Setter Property="Background" Value="Aquamarine"/>
+  	  </Style>
+    </UserControl.Styles>
+
+  <DockPanel Background="Green">
+    <DockPanel DockPanel.Dock="Bottom" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
+      <Button Classes="customBackground" HorizontalContentAlignment="Center" Width="180" FontSize="20" FontFamily="{StaticResource MedievalFont}" Background="Aquamarine" Command="{Binding OkCommand}">OK</Button>
+      <Button Classes="customBackground" HorizontalContentAlignment="Center" Width="180" FontSize="20" FontFamily="{StaticResource MedievalFont}" Background="Aquamarine" Command="{Binding CancelCommand}">Cancel</Button>
+    </DockPanel>
+    <DockPanel DockPanel.Dock="Top">
+      <TextBlock HorizontalAlignment="Center" FontSize="30" FontFamily="{StaticResource MedievalFont}" Foreground="White" Text="Crear Usuario" Height="100"/>
+    </DockPanel>
+    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100" AcceptsReturn="True" Background="SeaGreen" Text="{Binding Nombre}" Watermark="Nombre del usuario..."/>
+  </DockPanel>
+</UserControl>
