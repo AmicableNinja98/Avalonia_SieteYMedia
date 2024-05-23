@@ -3,6 +3,7 @@ using System.IO;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Collections.Generic;
 namespace SieteYMedia.Models;
 public class ListaJugadores
 {
@@ -32,16 +33,17 @@ public class ListaJugadores
         if(!Directory.Exists(Path.Combine(Environment.CurrentDirectory,"Datos")))
         {
             Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory,"Datos"));
-        }
-        if(File.Exists(_fichero))
-        {
-            using(StreamReader sr = File.OpenText(_fichero))
+            using(var archivo = File.Create(_fichero))
             {
-                _listaJugadores = JsonConvert.DeserializeObject<ObservableCollection<Jugador>>(sr.ReadToEnd())!;
+                
             }
         }
-        else
-            File.Create(_fichero);
+        else if(File.Exists(_fichero))
+        {
+            string res = File.ReadAllText(_fichero);
+            if (res != null)
+                _listaJugadores = JsonConvert.DeserializeObject<ObservableCollection<Jugador>>(res)!;
+        }
         return _listaJugadores;
     }
     public void SerializarJSON()

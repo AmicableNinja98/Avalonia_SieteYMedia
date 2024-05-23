@@ -46,6 +46,7 @@ public class MainWindowViewModel : ViewModelBase
                     nuevoUser.ID = _jugadores.NumJugadores;
                     LoadUserInstance.Lista.Add(nuevoUser);
                     LoadUserInstance.SerializarJSON();
+                    LoadCreateUserInstance.Nombre = string.Empty;
                 }
                 ContenidoViewModel = LoadUserInstance;
             });
@@ -66,6 +67,7 @@ public class MainWindowViewModel : ViewModelBase
             var jug = LoadUserInstance.Lista.First((x) => x.ID == LoadUserInstance.JugadorSeleccionado.ID);
             LoadUserInstance.Lista.Remove(jug);
             LoadUserInstance.SerializarJSON();
+            _jugadores.ObtenerJugadores();
         }
     }
     #endregion
