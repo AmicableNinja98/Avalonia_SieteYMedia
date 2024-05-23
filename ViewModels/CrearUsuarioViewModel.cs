@@ -15,7 +15,7 @@ public class CrearUsuarioViewModel : ViewModelBase
         get => _nombre;
         set => this.RaiseAndSetIfChanged(ref _nombre,value);
     }
-    public ReactiveCommand<Unit,Jugador> OkCommand { get;}
+    public ReactiveCommand<Unit,Unit> OkCommand { get;}
     public ReactiveCommand<Unit,ViewModelBase> CancelCommand { get;}
     #endregion
 
@@ -23,8 +23,15 @@ public class CrearUsuarioViewModel : ViewModelBase
     public CrearUsuarioViewModel(MainWindowViewModel mainWindowViewModel)
     {
         var IsValidObservable = this.WhenAnyValue(x => x.Nombre,x => !string.IsNullOrWhiteSpace(x));
-        OkCommand = ReactiveCommand.Create(() => new Jugador{Nombre = Nombre},IsValidObservable);
-        mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadUserInstance;
+        OkCommand = ReactiveCommand.Create(() => 
+        {
+            var jug = new Jugador();
+            jug.ID = mainWindowViewModel.LoadUserInstance.Lista.Count;
+            jug.Nombre = this.Nombre;
+            mainWindowViewModel.LoadUserInstance.Lista.Add(jug);
+            mainWindowViewModel.LoadUserInstance.SerializarJSON();
+            mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadUserInstance;
+        },IsValidObservable);
         CancelCommand = ReactiveCommand.Create(() => mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadUserInstance);
     }
     #endregion

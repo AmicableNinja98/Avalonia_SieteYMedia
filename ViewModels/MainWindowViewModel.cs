@@ -2,7 +2,6 @@ using System.Reactive.Linq;
 using ReactiveUI;
 using SieteYMedia.Models;
 using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 namespace SieteYMedia.ViewModels;
 public class MainWindowViewModel : ViewModelBase
@@ -36,7 +35,7 @@ public class MainWindowViewModel : ViewModelBase
     #endregion
 
     #region Metodos
-    public void AñadirUsuario()
+    /*public void AñadirUsuario()
     {
         Observable.Merge(
             LoadCreateUserInstance.OkCommand,LoadCreateUserInstance.CancelCommand.Select(_ => (Jugador?)null)).Take(1).Subscribe(nuevoUser =>
@@ -44,30 +43,21 @@ public class MainWindowViewModel : ViewModelBase
                 if(nuevoUser != null)
                 {
                     nuevoUser.ID = _jugadores.NumJugadores;
-                    LoadUserInstance.Lista.Add(nuevoUser);
-                    LoadUserInstance.SerializarJSON();
-                    LoadCreateUserInstance.Nombre = string.Empty;
+                    _jugadores.Lista.Add(nuevoUser);
+                    _jugadores.SerializarJSON();
                 }
                 ContenidoViewModel = LoadUserInstance;
             });
         ContenidoViewModel = LoadCreateUserInstance;
-    }
+    }*/
     public void SeleccionarJugador()
     {
         if(LoadUserInstance.JugadorSeleccionado != null && !string.IsNullOrWhiteSpace(LoadUserInstance.JugadorSeleccionado.Nombre))
         {
-            LoadGameInstance.Jugador = LoadUserInstance.JugadorSeleccionado;
-            ContenidoViewModel = LoadGameInstance;
-        }
-    }
-    public void EliminarJugador()
-    {
-        if(LoadUserInstance.JugadorSeleccionado != null && !string.IsNullOrWhiteSpace(LoadUserInstance.JugadorSeleccionado.Nombre))
-        {
-            var jug = LoadUserInstance.Lista.First((x) => x.ID == LoadUserInstance.JugadorSeleccionado.ID);
-            LoadUserInstance.Lista.Remove(jug);
-            LoadUserInstance.SerializarJSON();
             _jugadores.ObtenerJugadores();
+            var jug = _jugadores.Lista.First((x) => x.ID == LoadUserInstance.JugadorSeleccionado.ID && x.Nombre == LoadUserInstance.JugadorSeleccionado.Nombre);
+            LoadGameInstance.Jugador = jug;
+            ContenidoViewModel = LoadGameInstance;
         }
     }
     #endregion
