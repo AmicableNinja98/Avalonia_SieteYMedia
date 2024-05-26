@@ -40,6 +40,12 @@ public class ListaJugadoresViewModel : ViewModelBase
             _lista.SerializarJSON();
         }
     }
+    public void CrearUsuario(Jugador jug)
+    {
+        jug.ID = _lista.NumJugadores;
+        _lista.Lista.Add(jug);
+        _lista.SerializarJSON();
+    }
     public void SerializarJSON() => _lista.SerializarJSON();
     #endregion
 }

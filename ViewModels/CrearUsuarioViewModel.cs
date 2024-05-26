@@ -26,10 +26,8 @@ public class CrearUsuarioViewModel : ViewModelBase
         OkCommand = ReactiveCommand.Create(() => 
         {
             var jug = new Jugador();
-            jug.ID = mainWindowViewModel.LoadUserInstance.Lista.Count;
             jug.Nombre = this.Nombre;
-            mainWindowViewModel.LoadUserInstance.Lista.Add(jug);
-            mainWindowViewModel.LoadUserInstance.SerializarJSON();
+            mainWindowViewModel.LoadUserInstance.CrearUsuario(jug);
             mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadUserInstance;
         },IsValidObservable);
         CancelCommand = ReactiveCommand.Create(() => mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadUserInstance);

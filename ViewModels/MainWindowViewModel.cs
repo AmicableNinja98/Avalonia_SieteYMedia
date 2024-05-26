@@ -35,21 +35,6 @@ public class MainWindowViewModel : ViewModelBase
     #endregion
 
     #region Metodos
-    /*public void AñadirUsuario()
-    {
-        Observable.Merge(
-            LoadCreateUserInstance.OkCommand,LoadCreateUserInstance.CancelCommand.Select(_ => (Jugador?)null)).Take(1).Subscribe(nuevoUser =>
-            {
-                if(nuevoUser != null)
-                {
-                    nuevoUser.ID = _jugadores.NumJugadores;
-                    _jugadores.Lista.Add(nuevoUser);
-                    _jugadores.SerializarJSON();
-                }
-                ContenidoViewModel = LoadUserInstance;
-            });
-        ContenidoViewModel = LoadCreateUserInstance;
-    }*/
     public void SeleccionarJugador()
     {
         if(LoadUserInstance.JugadorSeleccionado != null && !string.IsNullOrWhiteSpace(LoadUserInstance.JugadorSeleccionado.Nombre))

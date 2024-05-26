@@ -70,7 +70,6 @@ public class GameViewModel : ViewModelBase
         _movCrupier = new();
         _movCrupier.Interval = TimeSpan.FromSeconds(1);
         _movCrupier.Tick += JugarCrupier;
-        _listaJugadores.ObtenerJugadores();
         PedirHabilitado = true;
         PlantarseHabilitado = true;
         BarajarBaraja();
@@ -123,6 +122,7 @@ public class GameViewModel : ViewModelBase
     private void SumarPuntosCrupier(INaipe naipe) => PuntosCrupier += (naipe.Peso <= Figura.Siete) ? (float)naipe.Peso : 0.5f;
     private void Ganador()
     {
+        _listaJugadores.ObtenerJugadores();
         var jug = _listaJugadores.Lista.First((x) => x.ID == _jugador.ID);
         if ((PuntosJug > PuntosCrupier && PuntosJug <= 7.5) || PuntosCrupier > 7.5)
         {
