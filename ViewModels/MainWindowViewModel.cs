@@ -29,21 +29,7 @@ public class MainWindowViewModel : ViewModelBase
         LoadCreateUserInstance = new(this);
         LoadUserInstance = new(this);
         LoadGameInstance = new(this);
-        _jugadores.ObtenerJugadores();
         _contenidoViewModel = MenuInstance;
-    }
-    #endregion
-
-    #region Metodos
-    public void SeleccionarJugador()
-    {
-        if(LoadUserInstance.JugadorSeleccionado != null && !string.IsNullOrWhiteSpace(LoadUserInstance.JugadorSeleccionado.Nombre))
-        {
-            _jugadores.ObtenerJugadores();
-            var jug = _jugadores.Lista.First((x) => x.ID == LoadUserInstance.JugadorSeleccionado.ID && x.Nombre == LoadUserInstance.JugadorSeleccionado.Nombre);
-            LoadGameInstance.Jugador = jug;
-            ContenidoViewModel = LoadGameInstance;
-        }
     }
     #endregion
 }

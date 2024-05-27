@@ -1,4 +1,4 @@
-Juego de cartas Siete y Media hecho con Avalonia.
+Juego de cartas Siete y Media hecho con Avalonia por AmicableNinja98.
 
 <b>COSAS A IMPLEMENTAR EN UN FUTURO</b>
 
@@ -6,4 +6,4 @@ Juego de cartas Siete y Media hecho con Avalonia.
 
 -Mejorar la visualización de las cartas en el juego.
 
--Intentar quitar el método "Seleccionar Usuario" del MainWindowViewModel y meterlo en ListaJugadoresViewModel
+-Añadir que cuando pulsas el botón de opciones en el menú te lleve a las estadísticas de los jugadores.

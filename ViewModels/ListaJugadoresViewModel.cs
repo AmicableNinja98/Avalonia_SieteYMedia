@@ -10,13 +10,14 @@ public class ListaJugadoresViewModel : ViewModelBase
 {
     #region Campos
     private ListaJugadores _lista = new();
-    private Jugador? _jugadorSeleccionado;
+    private Jugador _jugadorSeleccionado = new();
     #endregion
     #region Propiedades
     public ObservableCollection<Jugador> Lista => _lista.Lista;
     public ReactiveCommand<Unit, ViewModelBase> Atrás { get; }
     public ReactiveCommand<Unit,ViewModelBase> IrCrearUsuario{get;}
-    public Jugador? JugadorSeleccionado
+    public ReactiveCommand<Unit,Unit> IniciarPartida {get;}
+    public Jugador JugadorSeleccionado
     {
         get => _jugadorSeleccionado;
         set => this.RaiseAndSetIfChanged(ref _jugadorSeleccionado,value);
@@ -29,7 +30,12 @@ public class ListaJugadoresViewModel : ViewModelBase
         _lista.ObtenerJugadores();
         Atrás = ReactiveCommand.Create(() => mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.MenuInstance);
         IrCrearUsuario = ReactiveCommand.Create(() => mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadCreateUserInstance);
-        JugadorSeleccionado = new();
+        var IsValidObservable = this.WhenAnyValue((x) => x.JugadorSeleccionado.Nombre, x => !string.IsNullOrEmpty(x));
+        IniciarPartida = ReactiveCommand.Create(() =>
+        {
+            mainWindowViewModel.LoadGameInstance.Jugador = _jugadorSeleccionado;
+            mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadGameInstance;
+        },IsValidObservable);
     }
     public void EliminarJugador()
     {

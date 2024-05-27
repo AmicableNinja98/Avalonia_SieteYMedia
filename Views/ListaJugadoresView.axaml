@@ -17,7 +17,7 @@
     <TextBlock DockPanel.Dock="Top" Text="Usuarios" Foreground="White" FontFamily="{StaticResource MedievalFont}" Margin="0 30" FontSize="30" HorizontalAlignment="Center" Height="40"/>
     <DockPanel DockPanel.Dock="Bottom" Height="100" HorizontalAlignment="Center">
       <Button Classes="customBackground" Content="Iniciar Partida" Margin="0 10 20 10" Background="Aquamarine" FontSize="20" FontFamily="{StaticResource MedievalFont}" x:CompileBindings="False" 
-      Command="{Binding $parent[Window].DataContext.SeleccionarJugador}"/>
+      Command="{Binding IniciarPartida}"/>
       <Button Classes="customBackground" Content="Crear Usuario" Margin="0 0 10 0" x:CompileBindings="False" Background="Aquamarine" FontSize="20" FontFamily="{StaticResource MedievalFont}" 
       Command="{Binding IrCrearUsuario}"/>
       <Button Classes="customBackground" Content="Eliminar Usuario" Margin="10 0 0 0" IsEnabled="True" Background="Aquamarine" FontSize="20" FontFamily="{StaticResource MedievalFont}" x:CompileBindings="False" 
