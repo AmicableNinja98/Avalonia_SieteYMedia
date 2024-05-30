@@ -21,6 +21,7 @@ public class MainWindowViewModel : ViewModelBase
     public ListaJugadoresViewModel LoadUserInstance {get;}
     public CrearUsuarioViewModel LoadCreateUserInstance {get;}
     public GameViewModel LoadGameInstance {get;}
+    public OpcionesViewModel LoadOptionsInstance {get;}
     #endregion
     #region Constructores
     public MainWindowViewModel()
@@ -29,6 +30,7 @@ public class MainWindowViewModel : ViewModelBase
         LoadCreateUserInstance = new(this);
         LoadUserInstance = new(this);
         LoadGameInstance = new(this);
+        LoadOptionsInstance = new(this);
         _contenidoViewModel = MenuInstance;
     }
     #endregion

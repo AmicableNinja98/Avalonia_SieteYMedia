@@ -17,10 +17,11 @@
             <TextBlock Text="{Binding Subtitulo}" HorizontalAlignment="Center" Margin="0 0 0 70" FontSize="20" FontFamily="{StaticResource MedievalFont}" Foreground="White"/>
             <StackPanel VerticalAlignment="Center" Margin="10" Width="250" Height="150">
                   <Button Classes="customBackground" Content="{Binding Inicio}" CornerRadius="3" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" 
-                  HorizontalContentAlignment="Center" Margin="0 0 0 20" Width="140" Height="40" Background="Aquamarine" FontSize="20" FontFamily="{StaticResource MedievalFont}" 
-                  Command="{Binding IrCargarUsuarios}"/>
+                        HorizontalContentAlignment="Center" Margin="0 0 0 20" Width="140" Height="40" Background="Aquamarine" FontSize="20" FontFamily="{StaticResource MedievalFont}" 
+                        Command="{Binding IrCargarUsuarios}"/>
                   <Button Classes="customBackground" Content="{Binding Opciones}" CornerRadius="3" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" 
-                  HorizontalContentAlignment="Center" Margin="0 0 0 0" Width="140" Height="40" Background="Aquamarine" FontSize="20" FontFamily="{StaticResource MedievalFont}"/>
+                        HorizontalContentAlignment="Center" Margin="0 0 0 0" Width="140" Height="40" Background="Aquamarine" FontSize="20" FontFamily="{StaticResource MedievalFont}"
+                        Command="{Binding IrOpciones}"/>
             </StackPanel>
       </StackPanel>
 </UserControl>
