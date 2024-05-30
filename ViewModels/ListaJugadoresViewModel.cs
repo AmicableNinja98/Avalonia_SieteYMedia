@@ -53,9 +53,20 @@ public class ListaJugadoresViewModel : ViewModelBase
     }
     public void CrearUsuario(Jugador jug)
     {
-        jug.ID = _lista.NumJugadores;
-        _lista.Lista.Add(jug);
-        _lista.SerializarJSON();
+        int id = 0;
+        bool fin = false;
+        while (!fin)
+        {
+            if (!Lista.Any((x) => x.ID == id))
+            {
+                jug.ID = id;
+                Lista.Add(jug);
+                SerializarJSON();
+                fin = true;
+            }
+            else
+                id++;
+        }
     }
     public void SerializarJSON() => _lista.SerializarJSON();
     #endregion
