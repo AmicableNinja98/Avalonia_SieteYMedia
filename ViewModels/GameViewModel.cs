@@ -99,6 +99,7 @@ public class GameViewModel : ViewModelBase
             mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.MenuInstance;
             _movCrupier.Stop();
             _listaJugadores.SerializarJSON();
+            mainWindowViewModel.LoadOptionsInstance.Actualizar();
             Reiniciar();
         });
     }

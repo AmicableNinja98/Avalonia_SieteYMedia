@@ -7,7 +7,37 @@
              x:Class="SieteYMedia.Views.OpcionesView"
              x:DataType="vm:OpcionesViewModel">
 
-  <StackPanel Background="SeaGreen">
-    <TextBlock Text="{Binding Titulo}" FontSize="30" Foreground="White"/>
-  </StackPanel>
+  <UserControl.Styles>
+    <Style Selector="Button.customBackground:pointerover /template/ ContentPresenter">
+  		<Setter Property="Background" Value="Aquamarine"/>
+  	</Style>
+  </UserControl.Styles>
+
+  <DockPanel Background="Green">
+    <TextBlock DockPanel.Dock="Top" Text="Estadísticas" HorizontalAlignment="Center" Margin="10" FontSize="20" FontFamily="{StaticResource MedievalFont}" Foreground="White" Height="40"/>
+    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Height="100" HorizontalAlignment="Center" >
+      <Button Classes="customBackground" Content="Atrás" FontSize="20" Background="Aquamarine" Command="{Binding AtrasCommand}"/>
+    </StackPanel>
+    <ListBox ItemsSource="{Binding Lista}" Background="SeaGreen">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Margin="10" Text="{Binding Nombre}"/>
+            <TextBlock Margin="10">
+              <TextBlock Text="Partidas Totales:"/>
+              <TextBlock Text="{Binding PartidasTotales}"/>
+            </TextBlock>
+            <TextBlock Margin="10">
+              <TextBlock Text="Partidas Ganadas:"/>
+              <TextBlock Text="{Binding PartidasGanadas}"/>
+            </TextBlock>
+            <TextBlock Margin="10">
+              <TextBlock Text="Partidas Perdidas:"/>
+              <TextBlock Text="{Binding PartidasPerdidas}"/>
+            </TextBlock>
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </DockPanel>
 </UserControl>

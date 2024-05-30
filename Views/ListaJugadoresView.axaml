@@ -28,7 +28,7 @@
       <ListBox.ItemTemplate>
         <DataTemplate>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock FontSize="20" Text="{Binding Nombre}" HorizontalAlignment="Center"/>
+              <TextBlock FontSize="20" Text="{Binding Nombre}" HorizontalAlignment="Center"/>
             </StackPanel>
         </DataTemplate>
       </ListBox.ItemTemplate>

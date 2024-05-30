@@ -8,8 +8,8 @@ public class MenuViewModel : ViewModelBase
     public string Titulo => "SIETE Y MEDIA";
     public string Subtitulo => "Creado por AmicableNinja98";
     public string Inicio => "Iniciar Partida";
-    public string Opciones => "Opciones";
-    public ReactiveCommand<Unit,ViewModelBase> IrOpciones {get;}
+    public string Estadísticas => "Estadísticas";
+    public ReactiveCommand<Unit,ViewModelBase> IrEstadísticas {get;}
     public ReactiveCommand<Unit,ViewModelBase> IrCargarUsuarios {get;}
     #endregion
 
@@ -17,7 +17,7 @@ public class MenuViewModel : ViewModelBase
     public MenuViewModel(MainWindowViewModel mainWindowViewModel)
     {
         IrCargarUsuarios = ReactiveCommand.Create(() => mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadUserInstance);
-        IrOpciones = ReactiveCommand.Create(() => mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadOptionsInstance);
+        IrEstadísticas = ReactiveCommand.Create(() => mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadOptionsInstance);
     }
     #endregion
 }

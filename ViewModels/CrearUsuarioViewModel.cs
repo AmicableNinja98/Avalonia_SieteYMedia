@@ -28,7 +28,9 @@ public class CrearUsuarioViewModel : ViewModelBase
             var jug = new Jugador();
             jug.Nombre = this.Nombre;
             mainWindowViewModel.LoadUserInstance.CrearUsuario(jug);
+            mainWindowViewModel.LoadOptionsInstance.Actualizar();
             mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadUserInstance;
+            Nombre = string.Empty;
         },IsValidObservable);
         CancelCommand = ReactiveCommand.Create(() => mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadUserInstance);
     }

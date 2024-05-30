@@ -15,5 +15,7 @@ public class OpcionesViewModel : ViewModelBase
     public OpcionesViewModel(MainWindowViewModel mainWindowViewModel)
     {
         AtrasCommand = ReactiveCommand.Create(() => mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.MenuInstance);
+        Actualizar();
     }
+    public void Actualizar() => _jugadores.ObtenerJugadores();
 }

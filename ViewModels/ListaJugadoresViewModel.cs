@@ -15,12 +15,13 @@ public class ListaJugadoresViewModel : ViewModelBase
     #region Propiedades
     public ObservableCollection<Jugador> Lista => _lista.Lista;
     public ReactiveCommand<Unit, ViewModelBase> Atrás { get; }
-    public ReactiveCommand<Unit,ViewModelBase> IrCrearUsuario{get;}
-    public ReactiveCommand<Unit,Unit> IniciarPartida {get;}
+    public ReactiveCommand<Unit, ViewModelBase> IrCrearUsuario { get; }
+    public ReactiveCommand<Unit, Unit> IniciarPartida { get; }
+    public ReactiveCommand<Unit, Unit> EliminarJugador { get; }
     public Jugador JugadorSeleccionado
     {
         get => _jugadorSeleccionado;
-        set => this.RaiseAndSetIfChanged(ref _jugadorSeleccionado,value);
+        set => this.RaiseAndSetIfChanged(ref _jugadorSeleccionado, value);
     }
     #endregion
 
@@ -33,18 +34,22 @@ public class ListaJugadoresViewModel : ViewModelBase
         var IsValidObservable = this.WhenAnyValue((x) => x.JugadorSeleccionado.Nombre, x => !string.IsNullOrEmpty(x));
         IniciarPartida = ReactiveCommand.Create(() =>
         {
-            mainWindowViewModel.LoadGameInstance.Jugador = _jugadorSeleccionado;
-            mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadGameInstance;
-        },IsValidObservable);
-    }
-    public void EliminarJugador()
-    {
-        if(JugadorSeleccionado != null && !string.IsNullOrWhiteSpace(JugadorSeleccionado.Nombre))
+            if (JugadorSeleccionado != null && !string.IsNullOrWhiteSpace(JugadorSeleccionado.Nombre))
+            {
+                mainWindowViewModel.LoadGameInstance.Jugador = _jugadorSeleccionado;
+                mainWindowViewModel.ContenidoViewModel = mainWindowViewModel.LoadGameInstance;
+            }
+        }, IsValidObservable);
+        EliminarJugador = ReactiveCommand.Create(() =>
         {
-            var jug = _lista.Lista.First((x) => x.ID == JugadorSeleccionado.ID && x.Nombre == JugadorSeleccionado.Nombre);
-            _lista.Lista.Remove(jug);
-            _lista.SerializarJSON();
-        }
+            if (JugadorSeleccionado != null && !string.IsNullOrWhiteSpace(JugadorSeleccionado.Nombre))
+            {
+                var jug = _lista.Lista.First((x) => x.ID == JugadorSeleccionado.ID && x.Nombre == JugadorSeleccionado.Nombre);
+                _lista.Lista.Remove(jug);
+                _lista.SerializarJSON();
+                mainWindowViewModel.LoadOptionsInstance.Actualizar();
+            }
+        });
     }
     public void CrearUsuario(Jugador jug)
     {
